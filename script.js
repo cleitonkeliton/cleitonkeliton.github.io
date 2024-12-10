@@ -1,3 +1,4 @@
+
 console.log("Bem-vindo ao meu portfólio!");
 const toggleButton = document.getElementById('trocar-tema');
 const body = document.body;
@@ -24,6 +25,5 @@ downloadButton.addEventListener('click', () => {
   window.location.href = 'CleitonKelitondaSilvaValdevino.png';
   console.log('Download do currículo iniciado');
 });
-
 
 console.log("Tema alternado!");
