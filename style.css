@@ -102,6 +102,7 @@ header {
   .dark-theme a {
     color: #66ccff;
   }
+  
   .header-buttons {
     display: flex;
     gap: 10px;
@@ -126,3 +127,4 @@ header {
   #curriculo-section img:hover {
     transform: scale(1.05);
   }
+ 

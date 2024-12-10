@@ -1,6 +1,6 @@
 
 console.log("Bem-vindo ao meu portfólio!");
-const toggleButton = document.getElementById('trocar-tema');
+const toggleButton = document.getElementById('toggle-theme');
 const body = document.body;
 
 toggleButton.addEventListener('click', () => {
