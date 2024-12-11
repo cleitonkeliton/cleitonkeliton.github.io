@@ -1,11 +1,11 @@
-
 console.log("Bem-vindo ao meu portfólio!");
-const toggleButton = document.getElementById('toggle-theme');
+const toggleButton = document.getElementById('trocar-tema');
 const body = document.body;
 
 toggleButton.addEventListener('click', () => {
   body.classList.toggle('dark-theme');
 });
+
 const btnCurriculo = document.getElementById('toggle-curriculo');
 const curriculoSection = document.getElementById('curriculo-section');
 
