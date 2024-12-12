@@ -22,8 +22,6 @@ btnCurriculo.addEventListener('click', () => {
 const downloadButton = document.getElementById('download-curriculo');
 
 downloadButton.addEventListener('click', () => {
-  window.location.href = 'CleitonKelitondaSilvaValdevino.png';
+  window.location.href = 'CleitonKelitondaSilvaValdevino.pdf';
   console.log('Download do currículo iniciado');
 });
-
-console.log("Tema alternado!");
