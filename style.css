@@ -152,10 +152,10 @@ footer {
   border-top: 4px solid var(--cor-primaria);
 }
 
-/* Tema escuro */
+/* Tema escuro (Projetos) */
 .dark-theme {
   background: var(--cor-fundo-escuro);
-  color: var(--cor-texto-claro);
+  color: var(--cor-texto-escuro);
 }
 
 .dark-theme header {
