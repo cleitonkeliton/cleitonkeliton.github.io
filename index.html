@@ -2,73 +2,78 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfólio Pessoal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- layout responsivo -->
+  <title>Portfólio Pessoal</title> 
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <div class="header-content">
-          <h1>Cleiton Keliton da Silva Valdevino</h1>
-          <p>Engenheiro de Software | Desenvolvedor BackEnd | </p>
-          </p>Java | Spring Boot | Web API | Oracle DB </p>
+          <h1>Cleiton Keliton da Silva Valdevino</h1> <!-- Nome do autor -->
+          <p>Engenheiro de Software | Desenvolvedor BackEnd</p> <!-- Descrição do autor -->
+          <p>Java | Spring Boot | Web API | Oracle DB</p> <!--Principais Habilidades -->
         </div>
+        <!-- Botões para fundo da pagina e visualizar currículo -->
         <button id="trocar-tema">Alterar Tema</button>
-        <button id="toggle-curriculo">
-          Vizualizar Curriculo
-        </button>
-        
-      </header>
-      <!-- Seção Currículo -->
-<section id="curriculo-section" style="display: none; text-align: center; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-  <h2 id="download-curriculo" style="cursor: pointer; padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; font-size: 1.5em; margin-bottom: 20px;">
-    Fazer Download do Currículo
-  </h2>
-  <img src="CleitonKelitondaSilvaValdevino.png" alt="Currículo" width="80%" style="border: none; margin-top: 20px;">
-</section>
+        <button id="toggle-curriculo">Vizualizar Curriculo</button>
+    </header>
 
-<!-- Seção Sobre -->
-<section id="sobre" style="display: flex; flex-direction: column; align-items: center; padding: 40px; text-align: center;">
-  <h2>Sobre Mim</h2>
-  <p>
-    Atualmente estou cursando Engenharia de Software, tenho uma base técnica e prática nas principais linguagens e ferramentas em programação, como:
-  </p>
-  <ul>
-    <li>JavaScript</li>
-    <li>HTML5</li>
-    <li>CSS</li>
-    <li>Git</li>
-    <li>GitHub</li>
-  </ul>
-  <p>Tenho como principal ferramenta de domínio o Java ☕️, com experiência significativa em projetos que utilizam APIs e Spring Boot.</p>
-</section>
+    <!-- Seção Currículo -->
+    <section id="curriculo-section" style="display: none; text-align: center; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+      <!-- Botão para download do currículo -->
+      <h2 id="download-curriculo" style="cursor: pointer; padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; font-size: 1.5em; margin-bottom: 20px;">
+        Fazer Download do Currículo
+      </h2>
+      <!-- Imagem do currículo -->
+      <img src="CleitonKelitondaSilvaValdevino.png" alt="Currículo" width="80%" style="border: none; margin-top: 20px;">
+    </section>
 
-      <section id="projetos">
-        <h2>Projetos</h2>
-        <div class="projetos-container">
-          <div class="projeto">
-            <h3>Portfólio Pessoal</h3>
-            <p>Um site para exibir meus projetos e habilidades.</p>
-            <a href="https://github.com/cleitonkeliton/portfolio-pessoal" target="_blank">Ver no GitHub</a>
-          </div>
-          <div class="projeto">
-            <h3>API de Usuários</h3>
-            <p>Uma API RESTful para gerenciamento de usuários.</p>
-            <a href="#" target="_blank">Em breve</a>
-          </div>
+    <!-- Seção Sobre -->
+    <section id="sobre" style="display: flex; flex-direction: column; align-items: center; padding: 40px; text-align: center;">
+      <h2>Sobre Mim</h2>
+      <p>
+        Atualmente estou cursando Engenharia de Software, tenho uma base técnica e prática nas principais linguagens e ferramentas em programação, como:
+      </p>
+      <ul>
+        <li>JavaScript</li>
+        <li>HTML5</li>
+        <li>CSS</li>
+        <li>Git</li>
+        <li>GitHub</li>
+      </ul>
+      <p>Tenho como principal ferramenta de domínio o Java ☕️, com experiência significativa em projetos que utilizam APIs e Spring Boot.</p>
+    </section>
+
+    <!-- Seção de Exposição de Projetos -->
+    <section id="projetos">
+      <h2>Projetos</h2>
+      <div class="projetos-container">
+        <div class="projeto">
+          <h3>Portfólio Pessoal</h3> <!-- Nome do projeto -->
+          <p>Um site para exibir meus projetos e habilidades.</p> <!-- Descrição do projeto -->
+          <a href="https://github.com/cleitonkeliton/portfolio-pessoal" target="_blank">Ver no GitHub</a> <!-- Link para o projeto -->
         </div>
-      </section>
-  <footer>
-    <h2>Contato</h2>
-    <p>
-      <a href="https://github.com/cleitonkeliton" target="_blank">GitHub</a> |
-      <a href="https://www.linkedin.com/in/cleiton-keliton-b88b2b315/" target="_blank">LinkedIn</a> |
-      <a href="https://api.whatsapp.com/send?phone=5581992938376" target="_blank">Whatsaap</a> |
-      <a href="mailto:cleitonkeliton.s@gmail.com?subject=Contato%20via%20Portfólio&body=Olá,%20Cleiton!%20Gostaria%20de%20entrar%20em%20contato%20com%20você.">Gmail</a>
-    </p>
-    <p><small>Desenvolvido por Cleiton Valdevino | © 2024</small></p>
-  </footer>
-  <script src="script.js"></script>
-</body>
+        <div class="projeto">
+          <h3>API de Usuários</h3>
+          <p>Uma API RESTful para gerenciamento de usuários.</p>
+          <a href="#" target="_blank">Em breve</a> <!-- Projeto em Construção -->
+        </div>
+      </div>
+    </section>
 
+    <!-- Rodapé -->
+    <footer>
+      <h2>Contato</h2>
+      <p>
+        <!-- Links para redes sociais e contato -->
+        <a href="https://github.com/cleitonkeliton" target="_blank">GitHub</a> |
+        <a href="https://www.linkedin.com/in/cleiton-keliton-b88b2b315/" target="_blank">LinkedIn</a> |
+        <a href="https://api.whatsapp.com/send?phone=5581992938376" target="_blank">Whatsaap</a> |
+        <a href="mailto:cleitonkeliton.s@gmail.com?subject=Contato%20via%20Portfólio&body=Olá,%20Cleiton!%20Gostaria%20de%20entrar%20em%20contato%20com%20você.">Gmail</a>
+      </p>
+      <p><small>Desenvolvido por Cleiton Valdevino | © 2024</small></p> <!-- Informação de copyright -->
+    </footer>
+
+    <script src="script.js"></script>
+</body>
 </html>

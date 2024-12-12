@@ -2,7 +2,7 @@
 :root {
   --cor-primaria: #6a11cb;
   --cor-secundaria: #2575fc;
-  --cor-fundo-claro: #f4f4f4;
+  --cor-fundo-claro: #f4f4f4; 
   --cor-fundo-escuro: #121212;
   --cor-texto-claro: #fff;
   --cor-texto-escuro: #333;
@@ -11,7 +11,7 @@
   --cor-link-hover: #2575fc;
 }
 
-/* Corpo da página */
+/* Estilos para o corpo da página */
 body {
   font-family: 'Arial', 'Helvetica', sans-serif;
   margin: 0;
@@ -22,7 +22,7 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Header */
+/* Estilos para o cabeçalho */
 header {
   text-align: center;
   padding: 50px 20px;
@@ -31,6 +31,7 @@ header {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Títulos e textos do cabeçalho */
 header .header-content h1 {
   font-size: 3rem;
   margin: 0;
@@ -50,7 +51,6 @@ header .header-content p {
 
 #sobre h2 {
   font-size: 2rem;
-  color: var(--cor-texto-claro);
   margin-bottom: 20px;
 }
 
@@ -64,14 +64,13 @@ header .header-content p {
   margin: 5px 0;
 }
 
-/* Seção "Projetos" */
+/* Estilos para a seção de projetos */
 #projetos h2 {
-  text-align: center; /* Alinha o texto ao centro */
-  font-size: 2rem;    /* Tamanho da fonte */
-  margin-top: 40px;   /* Espaçamento superior */
-  color: var(--cor-texto-escuro); /* Cor do texto */
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 40px;
+  color: var(--cor-texto-escuro);
 }
-
 
 .projetos-container {
   display: grid;
@@ -80,6 +79,7 @@ header .header-content p {
   margin-top: 20px;
 }
 
+/* Estilos individuais dos projetos */
 .projeto {
   text-align: center;
   border: 1px solid #ddd;
@@ -91,15 +91,10 @@ header .header-content p {
 }
 
 .projeto:hover {
-  transform: scale(1.05);
+  transform: scale(1.05); /* Aumenta ligeiramente */
 }
 
-.projeto h3 {
-  text-align: center;
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-}
-
+/* Estilos para links */
 .projeto a {
   text-decoration: none;
   color: var(--cor-primaria);
@@ -118,6 +113,7 @@ header .header-content p {
   display: none;
 }
 
+/* Imagem do currículo */
 #curriculo-section img {
   border: 2px solid #ddd;
   border-radius: 10px;
@@ -130,7 +126,7 @@ header .header-content p {
   transform: scale(1.05);
 }
 
-/* Botões */
+/* Botões gerais */
 button {
   padding: 10px 20px;
   background-color: var(--cor-acento);
@@ -143,10 +139,10 @@ button {
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #45a049; /* Cor ao passar o mouse */
 }
 
-/* Footer */
+/* Rodapé */
 footer {
   text-align: center;
   padding: 20px;
@@ -154,34 +150,6 @@ footer {
   color: var(--cor-texto-claro);
   margin-top: 20px;
   border-top: 4px solid var(--cor-primaria);
-}
-
-footer h2 {
-  margin-bottom: 10px;
-  font-size: 1.8rem;
-}
-
-footer p {
-  font-size: 1rem;
-  margin: 5px 0;
-}
-
-footer a {
-  color: var(--cor-link);
-  text-decoration: none;
-  margin: 0 10px;
-  transition: color 0.3s ease;
-}
-
-footer a:hover {
-  color: var(--cor-link-hover);
-}
-
-footer p small {
-  display: block;
-  margin-top: 10px;
-  font-size: 0.9rem;
-  color: #bbb;
 }
 
 /* Tema escuro */
@@ -194,15 +162,6 @@ footer p small {
   background: linear-gradient(135deg, #444, #333);
 }
 
-.dark-theme .projeto {
-  background-color: #2e2e2e;
-  color: var(--cor-texto-claro);
-}
-
-.dark-theme footer {
-  background: #222;
-}
-
 /* Responsividade */
 @media (max-width: 768px) {
   header .header-content h1 {
@@ -211,13 +170,5 @@ footer p small {
 
   .projetos-container {
     grid-template-columns: 1fr;
-  }
-
-  footer h2 {
-    font-size: 1.5rem;
-  }
-
-  footer p {
-    font-size: 0.9rem;
   }
 }
