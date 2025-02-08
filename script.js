@@ -1,34 +1,45 @@
-console.log("Bem-vindo ao meu portfólio!");
-
-// Seleciona o botão de troca de tema
-const toggleButton = document.getElementById('trocar-tema');
-const body = document.body;
-
-toggleButton.addEventListener('click', () => {
-  // Alterna a classe 'dark-theme' para habilitar/desabilitar
-  body.classList.toggle('dark-theme');
+// Rolagem suave para links do menu
+document.querySelectorAll('nav ul li a').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href').substring(1);
+    const targetElement = document.getElementById(targetId);
+    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
 });
 
-// Seleciona o botão de alternância de currículo e a seção de currículo
-const btnCurriculo = document.getElementById('toggle-curriculo');
-const curriculoSection = document.getElementById('curriculo-section');
+// Botão "Voltar ao Topo"
+const backToTopButton = document.getElementById('back-to-top');
 
-// Alternar a visibilidade da seção de currículo
-btnCurriculo.addEventListener('click', () => {
-  if (curriculoSection.style.display === 'none' || curriculoSection.style.display === '') {
-    curriculoSection.style.display = 'block'; // Exibe a seção
-    console.log('Currículo exibido');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
+    backToTopButton.style.display = 'block';
   } else {
-    curriculoSection.style.display = 'none'; // Oculta a seção
-    console.log('Currículo ocultado');
+    backToTopButton.style.display = 'none';
   }
 });
 
-const downloadButton = document.getElementById('download-curriculo');
+backToTopButton.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 
-// Clique no botão de download
-downloadButton.addEventListener('click', () => {
-  // Redireciona o navegador para o arquivo PDF do currículo
-  window.location.href = 'CleitonKelitondaSilvaValdevino.pdf';
-  console.log('Download do currículo iniciado');
+// Tema Escuro
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+themeToggle.addEventListener('click', () => {
+  body.classList.toggle('dark-theme');
+  themeToggle.textContent = body.classList.contains('dark-theme') ? 'Modo Claro' : 'Modo Escuro';
+});
+
+// Inicializar AOS (Animações)
+AOS.init();
+
+// Inicializar Swiper (Carrossel de Projetos)
+const swiper = new Swiper('.swiper-container', {
+  loop: true,
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
 });
