@@ -1,90 +1,138 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portfólio de Cleiton Keliton da Silva Valdevino - Engenheiro de Software e Desenvolvedor BackEnd com experiência em Java, Spring Boot, APIs e Oracle DB.">
   <title>Cleiton Keliton - BackEnd</title>
   <link rel="stylesheet" href="style.css">
+  <!-- Biblioteca AOS para animações -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
 </head>
 <body>
+  <!-- Cabeçalho -->
   <header>
-    <div class="header-content">
-      <h1>Cleiton Keliton da Silva Valdevino</h1>
-      <p>Engenheiro de Software | Desenvolvedor BackEnd</p>
-      <p>Java | Spring Boot | Web API | Oracle DB</p>
-    </div>
-    <button id="trocar-tema">Alterar Tema</button>
-    <button id="toggle-curriculo">Visualizar Currículo</button>
+    <nav>
+      <ul>
+        <li><a href="#home">Início</a></li>
+        <li><a href="#about">Sobre Mim</a></li>
+        <li><a href="#skills">Habilidades</a></li>
+        <li><a href="#projects">Projetos</a></li>
+        <li><a href="#resume">Currículo</a></li>
+        <li><a href="#contact">Contato</a></li>
+      </ul>
+    </nav>
+    <!-- Botão de Tema Escuro -->
+    <button id="theme-toggle">Modo Escuro</button>
   </header>
 
-  <section id="curriculo-section">
-    <h2 id="download-curriculo">Fazer Download do Currículo</h2>
-    <iframe src="CleitonKelitondaSilvaValdevino.pdf" width="80%" height="600px" style="border: none; margin-top: 20px;"></iframe>
+  <!-- Seção Home -->
+  <section id="home" class="home" data-aos="fade-down">
+    <div class="home-content">
+      <h1>Cleiton Keliton da Silva Valdevino</h1>
+      <p>Engenheiro de Software | Desenvolvedor BackEnd | Java </p>
+      <p> PostgreSQL | Spring Boot | API RESTful | Oracle DB</p>
+      <!-- Botão para exibir o currículo -->
+      </div>
   </section>
 
-  <section id="sobre">
+  <!-- Seção Sobre Mim -->
+  <section id="about" class="about" data-aos="fade-up">
     <h2>Sobre Mim</h2>
     <p>
-        Sou estudante de Engenharia de Software e desenvolvedor com foco em <strong>Java</strong> e <strong>Spring Boot</strong>, 
-        especializado no desenvolvimento de <strong>APIs RESTful</strong> e na integração com <strong>bancos de dados relacionais</strong>, 
-        como <strong>PostgreSQL</strong> e <strong>Oracle DB</strong>. Tenho conhecimento em <strong>HTML, CSS e JavaScript</strong>, 
-        o que me permite atuar também no desenvolvimento web.
+      Sou estudante de Engenharia de Software e desenvolvedor com foco em <strong>Java</strong> e <strong>Spring Boot</strong>, 
+      especializado no desenvolvimento de <strong>APIs RESTful</strong> e na integração com <strong>bancos de dados relacionais</strong>, 
+      como <strong>PostgreSQL</strong> e <strong>Oracle DB</strong>. Tenho conhecimento em <strong>HTML, CSS e JavaScript</strong>, 
+      o que me permite atuar também no desenvolvimento web.
     </p>
     <p>
-        Possuo experiência em <strong>controle de versão com Git e GitHub</strong>, além de boas práticas de desenvolvimento, 
-        como <strong>Clean Code</strong> e <strong>princípios SOLID</strong>. Trabalho com <strong>metodologias ágeis</strong>, como Scrum e Kanban, 
-        e utilizo <strong>AWS Lambda</strong> para implantação e gerenciamento de aplicações na nuvem.
+      Possuo experiência em <strong>controle de versão com Git e GitHub</strong>, além de boas práticas de desenvolvimento, 
+      como <strong>Clean Code</strong> e <strong>princípios SOLID</strong>. Trabalho com <strong>metodologias ágeis</strong>, como Scrum e Kanban, 
+      e utilizo <strong>AWS Lambda</strong> para implantação e gerenciamento de aplicações na nuvem.
     </p>
     <p>
-        Busco está aprimorando minhas habilidades e buscando aplicar novas tecnologias para desenvolver soluções eficientes, escaláveis e seguras.
+      Busco estar aprimorando minhas habilidades e buscando aplicar novas tecnologias para desenvolver soluções eficientes, escaláveis e seguras.
     </p>
-</section>
+  </section>
 
-  <section id="projetos">
-    <h2>Projetos</h2>
-    <div class="projetos-container">
-      <div class="projeto">
-        <h3>Portfólio Pessoal</h3>
-        <p>Um site para exibir meus projetos e habilidades.</p>
-        <p><strong>Tecnologias:</strong> HTML5, CSS3, JavaScript</p>
-        <p><strong>Desafios:</strong> Criar um design responsivo e acessível.</p>
-        <a href="https://github.com/cleitonkeliton/portfolio-pessoal" target="_blank">Ver no GitHub</a>
-      </div>
-      <div class="projeto">
-        <h3>API de Usuários</h3>
-        <p>Uma API RESTful para gerenciamento de usuários.</p>
-        <p><strong>Tecnologias:</strong> Java, Spring Boot, MySQL</p>
-        <p><strong>Desafios:</strong> Implementar autenticação segura e otimização de consultas.</p>
-        <a href="#" target="_blank">Em breve</a>
-      </div>
+  <!-- Seção Habilidades -->
+  <section id="skills" class="skills" data-aos="fade-up">
+    <h2>Habilidades</h2>
+    <div class="skills-grid">
+      <div class="skill">HTML5</div>
+      <div class="skill">CSS3</div>
+      <div class="skill">JavaScript</div>
+      <div class="skill">JAVA</div>
+      <div class="skill">AWS LAMBDA</div>
+      <div class="skill">POSTGRESQL</div>
+      <div class="skill">MYSQL</div>
+      <div class="skill">KAFKA</div>
+      <div class="skill">SCRUM</div>
+      <div class="skill">KANBAN</div>
+      <div class="skill">GIT</div>
+      <div class="skill">GITHUB</div>
     </div>
   </section>
 
-  <section id="blog">
-    <h2>Artigos</h2>
-    <article>
-      <h3>Como otimizar o desempenho de APIs RESTful</h3>
-      <p>Descubra técnicas para melhorar a performance de suas APIs.</p>
-      <a href="#" target="_blank">Leia mais</a>
-    </article>
-    <article>
-      <h3>Introdução ao Spring Boot</h3>
-      <p>Aprenda os conceitos básicos do Spring Boot para desenvolvimento backend.</p>
-      <a href="#" target="_blank">Leia mais</a>
-    </article>
+  <!-- Seção Projetos -->
+  <section id="projects" class="projects" data-aos="fade-up">
+    <h2>Projetos</h2>
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="assets/images/projeto1.jpg" alt="Projeto 1">
+          <h3>Projeto 1</h3>
+          <p>Descrição do projeto 1.</p>
+          <a href="#" target="_blank">Ver Projeto</a>
+        </div>
+        <div class="swiper-slide">
+          <img src="assets/images/projeto2.jpg" alt="Projeto 2">
+          <h3>Projeto 2</h3>
+          <p>Descrição do projeto 2.</p>
+          <a href="#" target="_blank">Ver Projeto</a>
+        </div>
+        <!-- Adicione mais slides aqui -->
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
   </section>
 
+  <!-- Seção Currículo -->
+  <section id="resume" class="resume" data-aos="fade-up">
+    <h2>Currículo</h2>
+    <p>Clique no botão abaixo para visualizar ou baixar meu currículo.</p>
+    <a href="CleitonKelitondaSilvaValdevino.pdf" target="_blank" class="btn">Exibir Currículo</a>
+    <a href="CleitonKelitondaSilvaValdevino.pdf" download class="btn">Baixar Currículo</a>
+  </section>
+
+  <!-- Seção Contato -->
+  <section id="contact" class="contact" data-aos="fade-up">
+    <h2>Contato</h2>
+    <form id="contact-form">
+      <input type="text" id="name" placeholder="Seu Nome" required>
+      <input type="email" id="email" placeholder="Seu E-mail" required>
+      <textarea id="message" placeholder="Sua Mensagem" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+
+  <!-- Rodapé -->
   <footer>
     <h2>Contato</h2>
     <p>
-      <a href="https://github.com/cleitonkeliton" target="_blank">GitHub</a> |
-      <a href="https://www.linkedin.com/in/cleiton-keliton-b88b2b315/" target="_blank">LinkedIn</a> |
-      <a href="https://api.whatsapp.com/send?phone=5581992938376" target="_blank">WhatsApp</a> |
-      <a href="mailto:cleitonkeliton.s@gmail.com?subject=Contato%20via%20Portfólio&body=Olá,%20Cleiton!%20Gostaria%20de%20entrar%20em%20contato%20com%20você.">Gmail</a>
+      <a href="https://github.com/cleitonkeliton" target="_blank" rel="noopener noreferrer" title="GitHub">GitHub</a> |
+      <a href="https://www.linkedin.com/in/cleiton-keliton-b88b2b315/" target="_blank" rel="noopener noreferrer" title="LinkedIn">LinkedIn</a> |
+      <a href="https://api.whatsapp.com/send?phone=5581992938376" target="_blank" rel="noopener noreferrer" title="WhatsApp">WhatsApp</a> |
+      <a href="mailto:cleitonkeliton.s@gmail.com?subject=Contato%20via%20Portfólio&body=Olá,%20Cleiton!%20Gostaria%20de%20entrar%20em%20contato%20com%20você." title="Gmail">Gmail</a>
     </p>
     <p><small>Desenvolvido por Cleiton Valdevino | © 2024</small></p>
   </footer>
+
+  <!-- Botão "Voltar ao Topo" -->
+  <button id="back-to-top" title="Voltar ao topo">↑</button>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
