@@ -18,6 +18,29 @@ body.dark-theme {
   color: #f4f4f4;
 }
 
+body.dark-theme .skill {
+  background-color: #555;
+  color: #fff;
+}
+
+body.dark-theme .btn {
+  background-color: #555;
+  color: #fff;
+}
+
+body.dark-theme .swiper-slide {
+  background-color: #444;
+  color: #fff;
+}
+
+body.dark-theme .swiper-slide a {
+  color: #007bff;
+}
+
+body.dark-theme footer a {
+  color: #007bff;
+}
+
 /* Cabeçalho */
 header {
   background-color: #333;
@@ -143,6 +166,12 @@ section h2 {
   padding: 1rem;
   border-radius: 5px;
   text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.skill:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Seção Projetos */
@@ -247,13 +276,25 @@ footer a:hover {
   background-color: #007bff;
   color: #fff;
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
 }
 
 #back-to-top:hover {
   background-color: #0056b3;
+}
+
+#back-to-top::before {
+  content: '↑';
+  font-size: 1.5rem;
 }
 
 /* Animações */
