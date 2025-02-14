@@ -1,4 +1,3 @@
-// script.js atualizado
 document.addEventListener('DOMContentLoaded', () => {
   // Menu mobile
   const mobileMenu = document.getElementById('mobile-menu');
