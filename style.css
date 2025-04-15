@@ -728,8 +728,8 @@ footer small {
   }
 
   nav {
-    justify-content: flex-end; /* Distribui elementos */
-    gap: 1rem; /* Espaçamento menor */
+    justify-content: flex-end;
+    gap: 1rem;
     padding: 0 0.5rem;
   }
 
@@ -856,12 +856,12 @@ footer small {
     height: calc(100vh - 60px);
     background: linear-gradient(135deg, #0066cc 0%, #004799 100%);
     flex-direction: column;
-    transition: left 0.3s ease-in-out; /* Transição suave */
+    transition: left 0.3s ease-in-out;
     padding: 1rem;
     z-index: 999;
   }
   #nav-list.active {
-    left: 0; /* Traz o menu para a tela */
+    left: 0;
   }
 
   .dark-theme #nav-list {
