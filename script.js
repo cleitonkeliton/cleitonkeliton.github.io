@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Rolagem suave com offset e fechamento do menu
-  document.querySelectorAll('#nav-list a').forEach(anchor => { // Alterado para '#nav-list a'
+  document.querySelectorAll('#nav-list a').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       e.preventDefault();
       const targetId = this.getAttribute('href').substring(1);
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const formData = new FormData(contactForm);
     
     try {
-      const response = await fetch('https://formspree.io/f/your-form-id', {
+      const response = await fetch('https://formspree.io/f/movdywgb', {
         method: 'POST',
         body: formData,
         headers: {
