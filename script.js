@@ -1,124 +1,193 @@
-document.addEventListener('DOMContentLoaded', () => {
-  // Menu mobile
-  const mobileMenu = document.getElementById('mobile-menu');
-  const navList = document.getElementById('nav-list');
+/*
+ * Portfólio — Cleiton Keliton
+ *
+ * Carregado com "defer": roda depois que o HTML foi lido, então todos os
+ * elementos já existem. A classe "js" e o tema inicial são aplicados antes,
+ * por um script curto no <head> (assim a página não pisca no tema errado).
+ */
+'use strict';
 
-  // Alternar menu mobile
-  mobileMenu.addEventListener('click', () => {
-    navList.classList.toggle('active');
-    mobileMenu.textContent = navList.classList.contains('active') ? '✕' : '☰';
+const root = document.documentElement;
+const THEME_KEY = 'dark-theme'; // mesma chave das versões anteriores do site
+const THEME_COLOR = { light: '#0066cc', dark: '#1c2833' }; // barra do navegador no celular
+
+/* Assina mudanças de uma media query (com alternativa para Safari antigo). */
+function onMediaChange(query, callback) {
+  const media = window.matchMedia(query);
+  if (media.addEventListener) media.addEventListener('change', callback);
+  else if (media.addListener) media.addListener(callback);
+}
+
+/* ---------- Animação de entrada das seções ---------- */
+function initReveal() {
+  clearTimeout(window.revealFallback); // o script carregou: cancela a contingência do <head>
+  const sections = document.querySelectorAll('[data-reveal]');
+  const reveal = (element) => element.classList.add('is-visible');
+
+  // Revela sem animação a seção de destino de um link (#projects etc.). Sem isso, o
+  // deslocamento da animação (100 px) entra no cálculo da rolagem e o título da
+  // seção termina escondido atrás do cabeçalho.
+  const revealNow = (element) => {
+    element.classList.add('reveal-instant', 'is-visible');
+    void element.offsetHeight; // aplica o estado final antes de o navegador calcular a rolagem
+    element.classList.remove('reveal-instant');
+  };
+  const sectionFromHash = (hash) => {
+    if (!hash || hash.length < 2) return null;
+    const element = document.getElementById(decodeURIComponent(hash.slice(1)));
+    return element && element.matches('[data-reveal]') ? element : null;
+  };
+
+  const initialTarget = sectionFromHash(window.location.hash); // página aberta já com #seção
+  if (initialTarget) revealNow(initialTarget);
+
+  document.addEventListener('click', (event) => {
+    const link = event.target.closest('a[href^="#"]');
+    const target = link && sectionFromHash(link.getAttribute('href'));
+    if (target) revealNow(target);
   });
 
-  // Rolagem suave com offset e fechamento do menu
-  document.querySelectorAll('#nav-list a').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      e.preventDefault();
-      const targetId = this.getAttribute('href').substring(1);
-      const targetElement = document.getElementById(targetId);
-      const headerHeight = document.querySelector('header').offsetHeight;
-
-      // Fechar menu mobile
-      navList.classList.remove('active');
-      mobileMenu.textContent = '☰';
-
-      // Rolagem suave
-      if(targetElement) {
-        window.scrollTo({
-          top: targetElement.offsetTop - headerHeight,
-          behavior: 'smooth'
-        });
-      }
-      
-      // Atualizar URL sem recarregar a página
-      history.pushState(null, null, `#${targetId}`);
-    });
-  });
-
-  // Fechar menu ao clicar fora (opcional)
-  document.addEventListener('click', (e) => {
-    if(!navList.contains(e.target) && !mobileMenu.contains(e.target)) {
-      navList.classList.remove('active');
-      mobileMenu.textContent = '☰';
-    }
-  });
-});
-
-  // Tema escuro com localStorage
-  const themeToggle = document.getElementById('theme-toggle');
-  const body = document.body;
-
-  // Carregar tema salvo
-  const savedTheme = localStorage.getItem('dark-theme');
-  if (savedTheme === 'true') {
-    body.classList.add('dark-theme');
-    themeToggle.textContent = 'Modo Claro';
+  if (!('IntersectionObserver' in window)) {
+    sections.forEach(reveal);
+    return;
   }
 
-  themeToggle.addEventListener('click', () => {
-    body.classList.toggle('dark-theme');
-    const isDark = body.classList.contains('dark-theme');
-    localStorage.setItem('dark-theme', isDark);
-    themeToggle.textContent = isDark ? 'Modo Claro' : 'Modo Escuro';
-  });
-
-  // Formulário de contato
-  const contactForm = document.getElementById('contact-form');
-  contactForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const formData = new FormData(contactForm);
-    
-    try {
-      const response = await fetch('https://formspree.io/f/movdywgb', {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
-      });
-
-      if (response.ok) {
-        alert('Mensagem enviada com sucesso!');
-        contactForm.reset();
-      } else {
-        throw new Error('Erro ao enviar mensagem');
+  // Revela cada seção uma única vez, quando ela entra na tela (100 px de margem).
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        reveal(entry.target);
+        observer.unobserve(entry.target);
       }
+    });
+  }, { rootMargin: '0px 0px -100px 0px' });
+
+  sections.forEach((section) => observer.observe(section));
+}
+
+/* ---------- Tema claro/escuro ---------- */
+function readSavedTheme() {
+  try {
+    return localStorage.getItem(THEME_KEY);
+  } catch {
+    return null; // armazenamento bloqueado (ex.: modo privado restrito)
+  }
+}
+
+function applyTheme(isDark) {
+  const theme = isDark ? 'dark' : 'light';
+  root.dataset.theme = theme;
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', THEME_COLOR[theme]);
+}
+
+function initTheme() {
+  document.getElementById('theme-toggle').addEventListener('click', () => {
+    const isDark = root.dataset.theme !== 'dark';
+    applyTheme(isDark);
+    try {
+      localStorage.setItem(THEME_KEY, String(isDark));
+    } catch {
+      /* sem armazenamento: o tema vale só até recarregar a página */
+    }
+  });
+
+  // Enquanto o visitante não escolher um tema, acompanha o do sistema operacional.
+  onMediaChange('(prefers-color-scheme: dark)', (event) => {
+    if (readSavedTheme() === null) applyTheme(event.matches);
+  });
+}
+
+/* ---------- Menu mobile ---------- */
+function initMobileMenu() {
+  const button = document.getElementById('mobile-menu');
+  const menu = document.getElementById('nav-list');
+  const pageContent = [document.querySelector('main'), document.querySelector('footer')];
+  const isOpen = () => menu.classList.contains('active');
+
+  function setOpen(open) {
+    menu.classList.toggle('active', open);
+    button.setAttribute('aria-expanded', String(open));
+    button.textContent = open ? '✕' : '☰';
+    // Com o menu aberto, o conteúdo por trás dele não recebe foco nem cliques.
+    pageContent.forEach((element) => {
+      if (element) element.inert = open;
+    });
+  }
+
+  button.addEventListener('click', () => setOpen(!isOpen()));
+
+  // Fecha ao escolher um link (a rolagem suave fica por conta do CSS).
+  menu.addEventListener('click', (event) => {
+    if (event.target.closest('a')) setOpen(false);
+  });
+
+  // Fecha ao clicar fora do menu.
+  document.addEventListener('click', (event) => {
+    if (isOpen() && !menu.contains(event.target) && !button.contains(event.target)) setOpen(false);
+  });
+
+  // Fecha com Esc e devolve o foco ao botão.
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && isOpen()) {
+      setOpen(false);
+      button.focus();
+    }
+  });
+
+  // Ao voltar para a largura de desktop, garante o menu fechado.
+  onMediaChange('(max-width: 768px)', (event) => {
+    if (!event.matches) setOpen(false);
+  });
+}
+
+/* ---------- Formulário de contato (Formspree) ---------- */
+let toastTimer;
+
+function showToast(message, type) {
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.className = `alert alert-${type} show`;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 6000);
+}
+
+function initContactForm() {
+  const form = document.getElementById('contact-form');
+  const submit = form.querySelector('button[type="submit"]');
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const label = submit.textContent;
+    submit.disabled = true;
+    submit.textContent = 'Enviando…';
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+      if (!response.ok) throw new Error(`Formspree respondeu ${response.status}`);
+      form.reset();
+      showToast('Mensagem enviada com sucesso! Obrigado pelo contato.', 'success');
     } catch (error) {
-      alert('Ocorreu um erro. Tente novamente mais tarde.');
+      console.error(error);
+      showToast('Não foi possível enviar a mensagem. Tente de novo ou fale comigo pelo e-mail ou WhatsApp no rodapé.', 'error');
+    } finally {
+      submit.disabled = false;
+      submit.textContent = label;
     }
   });
+}
 
-  // Inicializar AOS (Animações)
-  AOS.init({
-    duration: 1000,
-    offset: 100,
-    once: true
-  });
+/* ---------- Ano atual no rodapé ---------- */
+function updateYear() {
+  const year = document.getElementById('ano-atual');
+  if (year) year.textContent = String(new Date().getFullYear());
+}
 
-  // Carrossel de Projetos (Swiper)
-  const swiper = new Swiper('.swiper-container', {
-    loop: true,
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-
-  // Botão "Voltar ao Topo (não implementado)"
-  /*const backToTopButton = document.getElementById('back-to-top');
-
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-      backToTopButton.style.display = 'block';
-    } else {
-      backToTopButton.style.display = 'none';
-    }
-  });
-
-  backToTopButton.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });*/
-});
+initReveal();
+initContactForm();
+initTheme();
+initMobileMenu();
+updateYear();

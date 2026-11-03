@@ -1,56 +1,109 @@
+/* =============================================================
+   Portfólio — Cleiton Keliton
+    1. Variáveis (cores, tipografia, espaçamentos)
+    2. Tema escuro (só redefine variáveis)
+    3. Base
+    4. Cabeçalho e navegação
+    5. Seções
+    6. Rodapé
+    7. Aviso de envio (toast)
+    8. Animação de entrada das seções
+    9. Utilitários
+   10. Tema escuro: ajustes por componente
+   11. Responsivo
+   12. Acessibilidade e impressão
+   ============================================================= */
+
+/* 1. Variáveis ------------------------------------------------ */
 :root {
-  /* Cores principais */
-  --primary-400: #007bff;
+  color-scheme: light;
+
+  /* Cores principais (#0066cc tem contraste 5,57:1 com texto branco) */
+  --primary-400: #0066cc;
   --primary-600: #0056b3;
   --primary-200: #b3d7ff;
-  
-  /* Sistema de cores */
+
+  /* Cores semânticas — o tema escuro redefine estas */
   --color-text: #333;
   --color-bg: #ffffff;
-  --color-success: #28a745;
-  --color-error: #dc3545;
-  --color-warning: #ffc107;
-  
-  /* Dark mode */
+  --color-accent: var(--primary-400);
+  --color-success: #1e7e34;
+  --color-error: #c82333;
+  --focus-ring: var(--primary-400);
+  --focus-halo: var(--primary-200);
+  --body-bg: linear-gradient(135deg, #f0f0f0, #ffffff);
+  --header-bg: linear-gradient(135deg, #0066cc 0%, #004799 100%);
+  --menu-bg: var(--header-bg);
+  --surface: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  --skills-bg: linear-gradient(135deg, #f8f9fa, #ffffff);
+  --contact-bg: #f8f9fa;
+  --form-bg: rgba(255, 255, 255, 0.95);
+  --input-bg: #ffffff;
+  --input-border: #6b8fbf;
+  --placeholder: #6b7280;
+  --footer-bg: linear-gradient(135deg, #004a99 0%, #002d5a 100%);
+
+  /* Paleta do tema escuro */
   --dark-bg: #121212;
   --dark-text: #e0f0ff;
   --dark-surface: linear-gradient(145deg, #1e1e1e 0%, #2a2a2a 100%);
-  --dark-border: #2d2d2d;
-  
-  /* Gradientes */
   --dark-gradient-1: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-  --dark-gradient-2: linear-gradient(45deg, #2c3e50 0%, #3498db 100%);
+  --dark-gradient-2: linear-gradient(45deg, #1c2833 0%, #1f4e79 100%);
   --dark-gradient-3: linear-gradient(to right bottom, #434343 30%, #000000 100%);
-  
+
   /* Tipografia */
-  --fs-base: 1rem;
   --fs-sm: 0.875rem;
   --fs-md: 1.125rem;
   --fs-lg: 1.25rem;
   --fs-xl: clamp(1.5rem, 5vw, 2.5rem);
-  
+
   /* Espaçamentos */
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
   --space-md: 1rem;
   --space-lg: 1.5rem;
   --space-xl: 2rem;
-  
+
   /* Bordas */
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 12px;
-  
+
   /* Sombras */
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
-  --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
-  --shadow-lg: 0 15px 35px rgba(0,0,0,0.2);
-  
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 15px 35px rgba(0, 0, 0, 0.2);
+
   /* Transições */
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Layout */
+  --header-h: 75px;
 }
 
-/* Base styles */
+/* 2. Tema escuro ---------------------------------------------- */
+/* O atributo data-theme é definido no <head> antes da primeira pintura
+   (escolha salva ou preferência do sistema) e alterado pelo botão. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-text: var(--dark-text);
+  --color-bg: var(--dark-bg);
+  --color-accent: #4da3ff;
+  --focus-ring: #4da3ff;
+  --focus-halo: rgba(77, 163, 255, 0.35);
+  --body-bg: var(--dark-gradient-3);
+  --header-bg: var(--dark-gradient-2);
+  --menu-bg: var(--dark-gradient-1);
+  --surface: var(--dark-surface);
+  --skills-bg: var(--dark-gradient-1);
+  --contact-bg: var(--dark-surface);
+  --form-bg: var(--dark-surface);
+  --input-bg: var(--dark-bg);
+  --input-border: #5b7fa6;
+  --placeholder: #9aa4b2;
+  --footer-bg: var(--dark-gradient-1);
+}
+
+/* 3. Base ----------------------------------------------------- */
 *,
 *::before,
 *::after {
@@ -60,29 +113,29 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 6rem;
+  scroll-padding-top: calc(var(--header-h) + var(--space-md));
 }
 
 body {
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;
   line-height: 1.5;
   color: var(--color-text);
-  background: linear-gradient(135deg, #f0f0f0, #ffffff);
+  background: var(--body-bg);
+  background-color: var(--color-bg);
   transition: var(--transition);
   overflow-x: hidden;
   max-width: 100vw;
 }
 
-/* Header */
+/* 4. Cabeçalho e navegação ------------------------------------ */
 header {
   position: sticky;
   top: 0;
-  height: 75px;
-  background: linear-gradient(135deg, #0066cc 0%, #004799 100%);
-  padding: 1rem 0;
   z-index: 1000;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-  backdrop-filter: blur(10px);
+  height: var(--header-h);
+  padding: 1rem 0;
+  background: var(--header-bg);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   transition: var(--transition);
 }
 
@@ -95,7 +148,6 @@ nav {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
-  transition: var(--transition);
 }
 
 #nav-list {
@@ -104,13 +156,11 @@ nav {
   list-style: none;
   margin: 0;
   padding: 0;
-  margin: 0;
-  padding-left: 0;
   order: 1;
 }
 
 #nav-list a {
-  color: rgba(255,255,255,0.9);
+  color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
   font-weight: 500;
   position: relative;
@@ -118,151 +168,81 @@ nav {
   transition: var(--transition);
 }
 
+#nav-list a:hover {
+  color: #fff;
+}
+
+/* Sublinhado animado no hover/foco */
 #nav-list a::after {
   content: '';
   position: absolute;
-  bottom: -3px;
-  left: 0;
+  left: 0.5rem;
+  bottom: 0.15rem;
   width: 0;
   height: 2px;
   background: currentColor;
   transition: width 0.3s ease;
 }
 
+#nav-list a:hover::after,
+#nav-list a:focus-visible::after {
+  width: calc(100% - 1rem);
+}
+
 #theme-toggle {
-  background: rgba(255,255,255,0.1);
-  color: white;
+  order: 3;
+  margin-left: auto;
+  padding: 0.5rem 1rem;
+  font: inherit;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
   border: none;
   border-radius: 50px;
   cursor: pointer;
   transition: var(--transition);
-  margin-left: auto;
-  order: 3;
-  white-space: nowrap;
 }
 
-#theme-toggle.loading::before {
-  animation: spin 1s linear infinite;
+#theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
+/* O botão mostra a ação disponível: "Modo Escuro" no claro e vice-versa */
+.theme-label-light {
+  display: none;
+}
+
+[data-theme="dark"] .theme-label-dark {
+  display: none;
+}
+
+[data-theme="dark"] .theme-label-light {
+  display: inline;
 }
 
 #mobile-menu {
   display: none;
 }
 
-/* Dark Mode */
-.dark-theme * {
-  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-}
-.dark-theme {
-  --color-text: #f0f4f8;
-  --dark-text: #e0f0ff;
-  background: var(--dark-gradient-3);
-  color: var(--color-text);
-  transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s ease;
+/* Sem JavaScript esses botões não funcionariam, então ficam escondidos */
+html:not(.js) #theme-toggle,
+html:not(.js) #mobile-menu {
+  display: none;
 }
 
-.dark-theme header {
-  background: var(--dark-gradient-2);
-  border-bottom: 1px solid rgba(52, 152, 219, 0.3);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-}
+/* 5. Seções --------------------------------------------------- */
 
-.dark-theme #nav-list a {
-  color: rgba(255,255,255,0.8);
-}
-
-.dark-theme #nav-list a:hover {
-  color: var(--primary-200);
-}
-
-/* Seções Específicas */
-.dark-theme .about {
-  background: transparent;
-}
-
-.dark-theme .resume {
-  background: var(--dark-surface);
-  border-color: rgba(52, 152, 219, 0.2);
-}
-.dark-theme .project-links a {
-  background: rgba(52, 152, 219, 0.2);
-  color: var(--primary-200);
-}
-
-.dark-theme .project-links a:hover {
-  background: rgba(52, 152, 219, 0.3);
-}
-
-.dark-theme .skills {
-  background: var(--dark-gradient-1);
-}
-
-.dark-theme .skill {
-  background: rgba(52, 152, 219, 0.15);
-  border: 1px solid rgba(52, 152, 219, 0.3);
-  backdrop-filter: blur(5px);
-}
-
-.dark-theme .project-card {
-  background: var(--dark-surface);
-  border: 1px solid rgba(52, 152, 219, 0.2);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-}
-
-.dark-theme #contact-form {
-  background: var(--dark-surface);
-  border: 1px solid rgba(52, 152, 219, 0.3);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-}
-
-.dark-theme footer {
-  background: var(--dark-gradient-1);
-  border-top: 1px solid rgba(52, 152, 219, 0.3);
-}
-
-/* Efeitos de Hover */
-.dark-theme .skill:hover,
-.dark-theme .project-card:hover {
-  box-shadow: 0 0 15px rgba(52, 152, 219, 0.2);
-}
-
-/* Efeito Vidro Fosco */
-.dark-theme .project-card,
-.dark-theme #contact-form {
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-
-/* Animações */
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Acessibilidade */
-#nav-list a:focus-visible,
-#theme-toggle:focus-visible {
-  outline: 3px solid white;
-  outline-offset: 2px;
-  border-radius: 5px;
-}
-/* Seção Home */
+/* Home */
 .home {
   background-color: var(--primary-400);
-  color: white;
+  color: #fff;
   padding: var(--space-xl) 0;
   text-align: center;
+}
+
+.home-content {
+  padding-inline: var(--space-md);
 }
 
 .home-content h1 {
@@ -275,7 +255,7 @@ nav {
   margin-bottom: var(--space-sm);
 }
 
-/* Seção Sobre Mim */
+/* Sobre Mim */
 .about {
   padding: var(--space-xl) 0;
   background-color: var(--color-bg);
@@ -291,14 +271,15 @@ nav {
   text-justify: inter-word;
 }
 
-/* Seção Habilidades */
+/* Habilidades */
 .skills {
   padding: var(--space-xl) 0;
-  background:linear-gradient(135deg, #f8f9fa, #ffffff);
+  background: var(--skills-bg);
   text-align: center;
 }
 
 .skills-grid {
+  list-style: none;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: var(--space-md);
@@ -309,8 +290,8 @@ nav {
 
 .skill {
   background: var(--primary-400);
-  color: white;
-  padding: var(--space-md);
+  color: #fff;
+  padding: var(--space-md) var(--space-sm);
   border-radius: var(--radius-sm);
   text-align: center;
   transition: var(--transition);
@@ -320,15 +301,8 @@ nav {
   transform: translateY(-3px);
   box-shadow: var(--shadow-md);
 }
-.dark-theme .skills {
-  background: var(--dark-gradient-1);
-}
-.dark-theme .skill {
-  background: rgba(52, 152, 219, 0.15);
-  border: 1px solid rgba(52, 152, 219, 0.3);
-  backdrop-filter: blur(5px);
-}
-/* Seção Projetos */
+
+/* Projetos */
 .projects {
   padding: var(--space-xl) 0;
   background-color: var(--color-bg);
@@ -361,6 +335,20 @@ nav {
   padding: var(--space-md);
 }
 
+.tech-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+}
+
+.tech-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: currentColor;
+}
+
 .project-links {
   display: flex;
   gap: var(--space-sm);
@@ -372,7 +360,7 @@ nav {
   text-align: center;
   padding: var(--space-sm);
   background: var(--primary-400);
-  color: white;
+  color: #fff;
   border-radius: var(--radius-sm);
   text-decoration: none;
   transition: var(--transition);
@@ -381,9 +369,10 @@ nav {
 .project-links a:hover {
   background: var(--primary-600);
 }
-/* Seção Currículo */
+
+/* Currículo */
 .resume {
-  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  background: var(--surface);
   padding: var(--space-xl) var(--space-md);
   text-align: center;
   border-top: 2px solid var(--primary-400);
@@ -397,7 +386,7 @@ nav {
 .resume h2 {
   font-size: var(--fs-xl);
   margin-bottom: var(--space-md);
-  color: var(--primary-400);
+  color: var(--color-accent);
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -409,36 +398,36 @@ nav {
 }
 
 .resume .btn {
+  display: inline-block;
   margin: var(--space-sm);
   padding: var(--space-sm) var(--space-md);
   font-size: var(--fs-md);
   border-radius: var(--radius-sm);
   background: var(--primary-400);
-  color: white;
+  color: #fff;
   text-decoration: none;
-  transition: background var(--transition);
-  display: inline-block;
+  transition: var(--transition);
 }
 
 .resume .btn:hover {
   background: var(--primary-600);
 }
 
-/* Seção Contato */
+/* Contato */
 .contact {
-  padding: var(--space-xl) 0;
+  padding: var(--space-xl) var(--space-md);
   min-height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #f8f9fa;
+  background: var(--contact-bg);
   text-align: center;
 }
 
 .contact h2 {
   font-size: var(--fs-xl);
-  color: var(--primary-400);
+  color: var(--color-accent);
   margin-bottom: var(--space-xl);
   position: relative;
   padding-bottom: var(--space-sm);
@@ -452,14 +441,14 @@ nav {
   transform: translateX(-50%);
   width: 60px;
   height: 3px;
-  background-color: var(--primary-400);
+  background-color: var(--color-accent);
 }
 
 #contact-form {
   width: 100%;
   max-width: 600px;
   padding: var(--space-xl);
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--form-bg);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
   margin: 0 auto;
@@ -470,16 +459,25 @@ nav {
   width: 100%;
   padding: var(--space-md);
   margin-bottom: var(--space-md);
-  border: 2px solid var(--primary-200);
-  border-radius: var(--radius-sm);
+  font: inherit;
   font-size: var(--fs-md);
+  color: var(--color-text);
+  background: var(--input-bg);
+  border: 2px solid var(--input-border);
+  border-radius: var(--radius-sm);
   transition: var(--transition);
+}
+
+#contact-form input::placeholder,
+#contact-form textarea::placeholder {
+  color: var(--placeholder);
+  opacity: 1;
 }
 
 #contact-form input:focus,
 #contact-form textarea:focus {
-  border-color: var(--primary-400);
-  box-shadow: 0 0 0 3px var(--primary-200);
+  border-color: var(--focus-ring);
+  box-shadow: 0 0 0 3px var(--focus-halo);
 }
 
 #contact-form textarea {
@@ -490,11 +488,12 @@ nav {
 #contact-form button {
   width: 100%;
   padding: var(--space-md);
+  font: inherit;
+  font-size: var(--fs-md);
+  color: #fff;
   background: var(--primary-400);
-  color: white;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: var(--fs-md);
   cursor: pointer;
   transition: var(--transition);
 }
@@ -504,36 +503,16 @@ nav {
   transform: translateY(-2px);
 }
 
-/* Dark Mode */
-.dark-theme {
-  --color-text: #f0f4f8;
-  --dark-text: #e0f0ff;
-  background: var(--dark-gradient-3);
-  color: var(--color-text);
-  background-color: #121212; 
+#contact-form button:disabled {
+  opacity: 0.75;
+  cursor: progress;
+  transform: none;
 }
 
-.dark-theme .contact {
-  background: var(--dark-surface);
-}
-
-.dark-theme #contact-form {
-  background: var(--dark-surface);
-  border: 1px solid rgba(52, 152, 219, 0.3);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-}
-
-.dark-theme #contact-form input,
-.dark-theme #contact-form textarea {
-  background: var(--dark-bg);
-  border: 1px solid var(--dark-border);
-  color: var(--dark-text);
-}
-
-/* Rodapé */
+/* 6. Rodapé --------------------------------------------------- */
 footer {
-  background: linear-gradient(135deg, #004a99 0%, #002d5a 100%);
-  color: white;
+  background: var(--footer-bg);
+  color: #fff;
   padding: var(--space-xl) 0 var(--space-md) 0;
   position: relative;
   margin-top: auto;
@@ -548,7 +527,7 @@ footer::before {
   right: 0;
   height: 3px;
   background: var(--primary-400);
-  box-shadow: 0 2px 8px rgba(0,123,255,0.3);
+  box-shadow: 0 2px 8px rgba(0, 102, 204, 0.3);
 }
 
 footer p {
@@ -556,6 +535,7 @@ footer p {
   margin: 0 auto;
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: var(--space-lg);
   flex-wrap: wrap;
   padding: 0 var(--space-md);
@@ -564,7 +544,7 @@ footer p {
 footer a {
   color: var(--primary-200);
   text-decoration: none;
-  display:flex;
+  display: flex;
   align-items: center;
   gap: var(--space-xs);
   transition: var(--transition);
@@ -573,35 +553,36 @@ footer a {
 }
 
 footer a:hover {
-  color: white;
+  color: #fff;
   transform: translateY(-2px);
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
 }
 
+/* Ícones do rodapé desenhados com máscara SVG (cor = currentColor) */
 footer a::before {
   content: '';
+  flex-shrink: 0;
   width: 24px;
   height: 24px;
   background: currentColor;
-  mask-size: contain;
-  mask-position: center;
-  mask-repeat: no-repeat;
+  -webkit-mask: var(--icon) center / contain no-repeat;
+          mask: var(--icon) center / contain no-repeat;
 }
 
-footer a[href*="github"]::before {
-  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>');
+footer a[href*="github"] {
+  --icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>');
 }
 
-footer a[href*="linkedin"]::before {
-  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0H5a5 5 0 0 0-5 5v14a5 5 0 0 0 5 5h14a5 5 0 0 0 5-5V5a5 5 0 0 0-5-5zM8 19H5V8h3v11zM6.5 6.732c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zM20 19h-3v-5.604c0-3.368-4-3.113-4 0V19h-3V8h3v1.765c1.396-2.586 7-2.777 7 2.476V19z"/></svg>');
+footer a[href*="linkedin"] {
+  --icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0H5a5 5 0 0 0-5 5v14a5 5 0 0 0 5 5h14a5 5 0 0 0 5-5V5a5 5 0 0 0-5-5zM8 19H5V8h3v11zM6.5 6.732c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zM20 19h-3v-5.604c0-3.368-4-3.113-4 0V19h-3V8h3v1.765c1.396-2.586 7-2.777 7 2.476V19z"/></svg>');
 }
 
-footer a[href*="whatsapp"]::before {
-  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>');
+footer a[href*="whatsapp"] {
+  --icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>');
 }
 
-footer a[href*="mailto"]::before {
-  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>');
+footer a[href^="mailto"] {
+  --icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>');
 }
 
 footer small {
@@ -609,37 +590,25 @@ footer small {
   text-align: center;
   margin-top: var(--space-xl);
   font-size: var(--fs-sm);
-  color: rgba(255,255,255,0.7);
+  color: rgba(255, 255, 255, 0.7);
   padding-top: var(--space-md);
-  border-top: 1px solid rgba(255,255,255,0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Dark Mode */
-.dark-theme footer {
-  background: var(--dark-gradient-1);
-  border-top: 1px solid rgba(52, 152, 219, 0.2);
-}
-
-
-.dark-theme footer a {
-  color: var(--primary-400);
-}
-
-.dark-theme footer a:hover {
-  color: var(--primary-200);
-}
-
-/* Alertas */
+/* 7. Aviso de envio (toast) ----------------------------------- */
 .alert {
   position: fixed;
-  top: var(--space-md);
+  top: calc(var(--header-h) + var(--space-md));
   right: var(--space-md);
+  max-width: min(420px, calc(100vw - 2 * var(--space-md)));
   padding: var(--space-md);
   border-radius: var(--radius-sm);
-  color: white;
+  color: #fff;
+  box-shadow: var(--shadow-lg);
   z-index: 10000;
   opacity: 0;
   transform: translateY(-20px);
+  pointer-events: none;
   transition: var(--transition);
 }
 
@@ -656,130 +625,198 @@ footer small {
   background: var(--color-error);
 }
 
-/* Dark mode */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --color-text: var(--dark-text);
-    --color-bg: var(--dark-bg);
-    
-    .skills,
-    .contact {
-      background: var(--dark-surface);
-    }
-    
-    .skill {
-      background: var(--dark-surface);
-      border: 1px solid var(--dark-border);
-    }
-    
-    .project-card {
-      background: var(--dark-surface);
-      border: 1px solid var(--dark-border);
-    }
-  }
+/* 8. Animação de entrada das seções --------------------------- */
+/* Só esconde quando há JavaScript (classe "js" no <html>): sem JS, ou se o
+   script falhar (classe "no-reveal" após 3 s), o conteúdo continua visível. */
+.js [data-reveal] {
+  opacity: 0;
+  transition: opacity 1s ease, transform 1s ease;
 }
 
-.dark-theme {
-  --color-text: var(--dark-text);
-  --color-bg: var(--dark-bg);
-  
-  .contact {
-    background: var(--dark-surface);
-  }
-  
-  .skill {
-    background: var(--dark-gradient-1);
-    border: 1px solid var(--dark-border);
-  }
-  
-  .project-card {
-    background: var(--dark-gradient-2);
-    border: 1px solid var(--dark-border);
-  }
-  
-  #contact-form input,
-  #contact-form textarea {
-    background: var(--dark-surface);
-    border: var(--dark-border);
-    color: var(--dark-text);
-  }
+.js [data-reveal="up"] {
+  transform: translateY(100px);
 }
 
+.js [data-reveal="down"] {
+  transform: translateY(-100px);
+}
+
+.js [data-reveal].is-visible,
+.no-reveal [data-reveal] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Usada pelo script ao revelar a seção de destino de um link, sem animação */
+.reveal-instant {
+  transition: none !important;
+}
+
+/* 9. Utilitários ---------------------------------------------- */
+/* Visível apenas para leitores de tela */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.honeypot {
+  display: none !important;
+}
+
+.icon-sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+/* 10. Tema escuro: ajustes por componente --------------------- */
+[data-theme="dark"] header {
+  border-bottom: 1px solid rgba(52, 152, 219, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] #nav-list a:hover {
+  color: var(--primary-200);
+}
+
+[data-theme="dark"] .about {
+  background: transparent;
+}
+
+[data-theme="dark"] .skill {
+  background: rgba(52, 152, 219, 0.15);
+  border: 1px solid rgba(52, 152, 219, 0.3);
+}
+
+[data-theme="dark"] .project-card {
+  background: var(--dark-gradient-2);
+  border: 1px solid rgba(52, 152, 219, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .skill:hover,
+[data-theme="dark"] .project-card:hover {
+  box-shadow: 0 0 15px rgba(52, 152, 219, 0.2);
+}
+
+[data-theme="dark"] .project-links a {
+  background: rgba(52, 152, 219, 0.2);
+  color: var(--primary-200);
+}
+
+[data-theme="dark"] .project-links a:hover {
+  background: rgba(52, 152, 219, 0.3);
+  color: #fff;
+}
+
+[data-theme="dark"] .resume {
+  border-color: rgba(52, 152, 219, 0.2);
+}
+
+[data-theme="dark"] #contact-form {
+  border: 1px solid rgba(52, 152, 219, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] footer {
+  border-top: 1px solid rgba(52, 152, 219, 0.2);
+}
+
+/* 11. Responsivo ---------------------------------------------- */
 @media (max-width: 768px) {
-  /* Header */
-  header {
-    height: 60px;
-    padding: 0.5rem 0;
+  :root {
+    --header-h: 60px;
   }
 
-  /* Menu Mobile */
-  #mobile-menu {
-    display: block;
-    background: transparent;
-    border: 2px solid rgba(255,255,255,0.8);
-    font-size: 1.5rem;
-    z-index: 1000;
-    order: 0;
-    margin-right: auto;
+  header {
+    padding: 0.5rem 0;
   }
 
   nav {
     justify-content: flex-end;
-    gap: 1rem;
     padding: 0 0.5rem;
+  }
+
+  /* Menu mobile */
+  #mobile-menu {
+    display: block;
+    order: 0;
+    margin-right: auto;
+    padding: 0.25rem 0.6rem;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    color: #fff;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    cursor: pointer;
   }
 
   #nav-list {
     position: fixed;
-    top: 60px;
+    top: var(--header-h);
     left: -100%;
-    width: 100%;
-    height: calc(100vh - 60px);
-    background: linear-gradient(135deg, #0066cc 0%, #004799 100%);
-    flex-direction: column;
-    transition: left 0.3s ease-in-out;
-    padding: 1rem;
     z-index: 999;
-    order:2;
+    order: 2;
+    width: 100%;
+    height: calc(100vh - var(--header-h));
+    height: calc(100dvh - var(--header-h));
+    flex-direction: column;
+    gap: var(--space-xs);
+    padding: 1rem;
+    background: var(--menu-bg);
+    /* fechado: fora da tela e fora da ordem de tabulação */
+    visibility: hidden;
+    transition: left 0.3s ease-in-out, visibility 0s linear 0.3s;
   }
 
   #nav-list.active {
     left: 0;
+    visibility: visible;
+    transition: left 0.3s ease-in-out, visibility 0s;
   }
 
   #nav-list a {
-    padding: 1rem;
+    display: block;
+    padding: 0.75rem 1rem;
     border-radius: var(--radius-sm);
   }
 
-  /* Botão de Tema */
-  #theme-toggle {
-    order: 2;
-    left: auto;
-    margin-left: 0.5rem;
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
+  #nav-list a::after {
+    display: none;
   }
 
-  /* Seção Home */
+  #nav-list a:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  #theme-toggle {
+    order: 2;
+    margin-left: 0.5rem;
+  }
+
   .home-content h1 {
     font-size: clamp(1.5rem, 6vw, 2rem);
   }
 
-  /* Grid de Projetos */
   .projects-grid {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }
 
-  /* Formulário de Contato */
   #contact-form {
     padding: var(--space-lg);
   }
 
-  /* Rodapé */
   footer p {
     gap: var(--space-md);
-    flex-wrap: wrap;
   }
 
   footer a::before {
@@ -788,110 +825,76 @@ footer small {
   }
 }
 
-/* Acessibilidade */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
-  
-  html {
-    scroll-behavior: auto;
-  }
-}
-*:focus-visible {
-  outline: 3px solid var(--primary-400);
-  outline-offset: 2px;
-  border-radius: var(--radius-sm);
-}
-
-
-@media screen and (max-width: 412px) and (min-height: 914px) {
-  .home-content {
-    padding: 1rem 0.5rem; /* Reduzir espaçamento vertical */
-  }
-
+@media (max-width: 480px) {
   .about p {
-    font-size: 0.9rem; /* Aumentar legibilidade */
+    font-size: 1rem;
+    line-height: 1.6;
     hyphens: auto;
-    line-height: 1.6; /* Melhor espaçamento entre linhas */
-  }
-
-   /* Header */
-   header {
-    height: 60px;
-    padding: 0.3rem 0;
-  }
-
-  #mobile-menu {
-    padding: 0.25rem 0.6rem;
-    font-size: 1.1rem;
-    order: 1;
-  }
-
-  nav {
-    justify-content: flex-start !important; 
-    gap: 0.5rem;
-    padding: 0 0.5rem;
-  }
-
-  #theme-toggle {
-    padding: 0.35rem 0.7rem;
-    font-size: 0.8rem;
-    margin-left: auto !important;
-    order: 2;
-    white-space: nowrap;
-  }
-
-  /* Menu Mobile */
-  #nav-list {
-    position: fixed;
-    top: 60px; /* Altura do header */
-    left: -100%;
-    width: 100%;
-    height: calc(100vh - 60px);
-    background: linear-gradient(135deg, #0066cc 0%, #004799 100%);
-    flex-direction: column;
-    transition: left 0.3s ease-in-out;
-    padding: 1rem;
-    z-index: 999;
-  }
-  #nav-list.active {
-    left: 0;
-  }
-
-  .dark-theme #nav-list {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-  }
-
-  /* Conteúdo Principal */
-  .home-content h1 {
-    font-size: clamp(1.8rem, 8vw, 2.2rem);
-    line-height: 1.3;
-    padding: 0 1rem;
   }
 
   .projects-grid {
     grid-template-columns: 1fr;
   }
 
-  /* Rodapé - Ícones em Linha */
-  footer p {
-    flex-wrap: nowrap; /* Impede quebra de linha */
-    gap: var(--space-sm);
-    padding: 0 var(--space-xs);}
+  #contact-form {
+    padding: var(--space-md);
+  }
 
-  footer a {
-    padding: var(--space-xs);
+  footer p {
+    gap: var(--space-sm);
+    padding: 0 var(--space-xs);
   }
 
   footer a::before {
     width: 20px;
     height: 20px;
   }
+}
 
-  /* Formulário de Contato */
-  #contact-form {
-    padding: var(--space-md);
+/* 12. Acessibilidade e impressão ------------------------------ */
+*:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* No cabeçalho azul, o contorno de foco é branco */
+header :focus-visible {
+  outline-color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media print {
+  .js [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  header {
+    position: static;
+  }
+
+  #mobile-menu,
+  #theme-toggle,
+  .alert {
+    display: none !important;
   }
 }
