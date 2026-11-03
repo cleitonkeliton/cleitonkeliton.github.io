@@ -6,7 +6,7 @@
   <title>Cleiton Keliton | Desenvolvedor Back-end Java</title>
   <meta name="description" content="Portfólio de Cleiton Keliton, desenvolvedor back-end Java (Spring Boot, APIs RESTful, PostgreSQL) e estudante de Engenharia de Software.">
   <meta name="keywords" content="Java, Spring Boot, PostgreSQL, API RESTful, Desenvolvedor Back-end">
-  <meta name="theme-color" content="#0066cc">
+  <meta name="theme-color" content="#ffffff">
   <link rel="canonical" href="https://cleitonkeliton.github.io/">
   <link rel="icon" href="favicon.ico" sizes="32x32">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -37,16 +37,26 @@
         ? !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
         : saved === 'true';
       root.setAttribute('data-theme', dark ? 'dark' : 'light');
-      if (dark) document.querySelector('meta[name="theme-color"]').setAttribute('content', '#1c2833');
+      if (dark) document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0b1120');
     })();
   </script>
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+  <!-- O "?v=" muda a cada publicação para o navegador não misturar HTML novo com CSS/JS antigos em cache -->
+  <link rel="stylesheet" href="style.css?v=20261103">
+  <script src="script.js?v=20261103" defer></script>
 </head>
 <body>
-  <!-- Ícones dos projetos: Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com
-       Licença: https://fontawesome.com/license/free (ícones: CC BY 4.0) - Copyright 2023 Fonticons, Inc. -->
   <svg class="icon-sprite" aria-hidden="true" focusable="false">
+    <!-- Ícones de interface (desenhados para este site) -->
+    <symbol id="icon-brand" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="currentColor"/><path d="M24 21 13 32l11 11M40 21l11 11-11 11M35.5 17l-7 30" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></symbol>
+    <symbol id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></symbol>
+    <symbol id="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="icon-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5v11M7 10l5 5 5-5M4.5 20h15"/></symbol>
+    <symbol id="icon-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+    <!-- Ícones das tecnologias: Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com
+         Licença: https://fontawesome.com/license/free (ícones: CC BY 4.0) - Copyright 2023 Fonticons, Inc. -->
     <symbol id="icon-java" viewBox="0 0 384 512"><path d="M277.74 312.9c9.8-6.7 23.4-12.5 23.4-12.5s-38.7 7-77.2 10.2c-47.1 3.9-97.7 4.7-123.1 1.3-60.1-8 33-30.1 33-30.1s-36.1-2.4-80.6 19c-52.5 25.4 130 37 224.5 12.1zm-85.4-32.1c-19-42.7-83.1-80.2 0-145.8C296 53.2 242.84 0 242.84 0c21.5 84.5-75.6 110.1-110.7 162.6-23.9 35.9 11.7 74.4 60.2 118.2zm114.6-176.2c.1 0-175.2 43.8-91.5 140.2 24.7 28.4-6.5 54-6.5 54s62.7-32.4 33.9-72.9c-26.9-37.8-47.5-56.6 64.1-121.3zm-6.1 270.5a12.19 12.19 0 0 1-2 2.6c128.3-33.7 81.1-118.9 19.8-97.3a17.33 17.33 0 0 0-8.2 6.3 70.45 70.45 0 0 1 11-3c31-6.5 75.5 41.5-20.6 91.4zM348 437.4s14.5 11.9-15.9 21.2c-57.9 17.5-240.8 22.8-291.6.7-18.3-7.9 16-19 26.8-21.3 11.2-2.4 17.7-2 17.7-2-20.3-14.3-131.3 28.1-56.4 40.2C232.84 509.4 401 461.3 348 437.4zM124.44 396c-78.7 22 47.9 67.4 148.1 24.5a185.89 185.89 0 0 1-28.2-13.8c-44.7 8.5-65.4 9.1-106 4.5-33.5-3.8-13.9-15.2-13.9-15.2zm179.8 97.2c-78.7 14.8-175.8 13.1-233.3 3.6 0-.1 11.8 9.7 72.4 13.6 92.2 5.9 233.8-3.3 237.1-46.9 0 0-6.4 16.5-76.2 29.7zM260.64 353c-59.2 11.4-93.5 11.1-136.8 6.6-33.5-3.5-11.6-19.7-11.6-19.7-86.8 28.8 48.2 61.4 169.5 25.9a60.37 60.37 0 0 1-21.1-12.8z"/></symbol>
     <symbol id="icon-leaf" viewBox="0 0 512 512"><path d="M272 96c-78.6 0-145.1 51.5-167.7 122.5c33.6-17 71.5-26.5 111.7-26.5h88c8.8 0 16 7.2 16 16s-7.2 16-16 16H288 216s0 0 0 0c-16.6 0-32.7 1.9-48.2 5.4c-25.9 5.9-50 16.4-71.4 30.7c0 0 0 0 0 0C38.3 298.8 0 364.9 0 440v16c0 13.3 10.7 24 24 24s24-10.7 24-24V440c0-48.7 20.7-92.5 53.8-123.2C121.6 392.3 190.3 448 272 448l1 0c132.1-.7 239-130.9 239-291.4c0-42.6-7.5-83.1-21.1-119.6c-2.6-6.9-12.7-6.6-16.2-.1C455.9 72.1 418.7 96 376 96L272 96z"/></symbol>
     <symbol id="icon-database" viewBox="0 0 448 512"><path d="M448 80v48c0 44.2-100.3 80-224 80S0 172.2 0 128V80C0 35.8 100.3 0 224 0S448 35.8 448 80zM393.2 214.7c20.8-7.4 39.9-16.9 54.8-28.6V288c0 44.2-100.3 80-224 80S0 332.2 0 288V186.1c14.9 11.8 34 21.2 54.8 28.6C99.7 230.7 159.5 240 224 240s124.3-9.3 169.2-25.3zM0 346.1c14.9 11.8 34 21.2 54.8 28.6C99.7 390.7 159.5 400 224 400s124.3-9.3 169.2-25.3c20.8-7.4 39.9-16.9 54.8-28.6V432c0 44.2-100.3 80-224 80S0 476.2 0 432V346.1z"/></symbol>
@@ -57,8 +67,15 @@
 
   <header>
     <nav aria-label="Menu principal">
-      <!-- botão hamburguer (só aparece em telas pequenas) -->
-      <button id="mobile-menu" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-list">☰</button>
+      <!-- botão do menu (só aparece em telas menores) -->
+      <button id="mobile-menu" class="icon-button" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-list">
+        <svg class="icon icon-open" aria-hidden="true"><use href="#icon-menu"></use></svg>
+        <svg class="icon icon-close" aria-hidden="true"><use href="#icon-close"></use></svg>
+      </button>
+      <a href="#home" class="brand">
+        <svg class="brand-icon" aria-hidden="true"><use href="#icon-brand"></use></svg>
+        <span>Cleiton Keliton</span>
+      </a>
       <ul id="nav-list">
         <li><a href="#home">Início</a></li>
         <li><a href="#about">Sobre Mim</a></li>
@@ -67,9 +84,10 @@
         <li><a href="#resume">Currículo</a></li>
         <li><a href="#contact">Contato</a></li>
       </ul>
-      <button id="theme-toggle" type="button">
-        <span class="theme-label-dark">Modo Escuro</span>
-        <span class="theme-label-light">Modo Claro</span>
+      <button id="theme-toggle" class="icon-button" type="button" aria-pressed="false" title="Alternar tema claro/escuro">
+        <svg class="icon icon-moon" aria-hidden="true"><use href="#icon-moon"></use></svg>
+        <svg class="icon icon-sun" aria-hidden="true"><use href="#icon-sun"></use></svg>
+        <span class="sr-only">Tema escuro</span>
       </button>
     </nav>
   </header>
@@ -79,46 +97,78 @@
     <section id="home" class="home" data-reveal="down">
       <div class="home-content">
         <h1>Cleiton Keliton da Silva Valdevino</h1>
-        <p>Desenvolvedor Back-end Java | Estudante de Engenharia de Software</p>
+        <p class="home-role">Desenvolvedor Back-end Java | Estudante de Engenharia de Software</p>
+        <p class="home-tagline">Crio APIs RESTful com Java e Spring Boot, com foco em código limpo, boas práticas e aprendizado contínuo.</p>
+        <div class="home-actions">
+          <a href="#projects" class="btn btn-light">Ver projetos</a>
+          <a href="#contact" class="btn btn-ghost">Fale comigo</a>
+        </div>
       </div>
     </section>
 
     <!-- Seção Sobre Mim -->
     <section id="about" class="about" data-reveal="up">
       <h2>Sobre Mim</h2>
-      <p>Sou estudante de Engenharia de Software e desenvolvedor especializado em <strong>Java</strong> e <strong>Spring Boot</strong>.
-        Em termos simples, crio aplicações que facilitam a comunicação entre diferentes sistemas e que armazenam e gerenciam informações de maneira segura e organizada,
-        utilizando bancos de dados reconhecidos, como <strong>PostgreSQL</strong> e <strong>Oracle</strong>.</p>
-      <p>Além disso, possuo conhecimentos em <strong>HTML, CSS e JavaScript</strong>, o que me permite colaborar na criação de interfaces web atraentes e funcionais.
-        Isso significa que, além de desenvolver a "parte de trás" dos sistemas (o que não é visível para o usuário final),
-        também posso contribuir para a "parte da frente", garantindo uma experiência agradável e intuitiva.</p>
-      <p>Tenho experiência com ferramentas de controle de versão, como <strong>Git e GitHub</strong>, que ajudam a organizar e gerenciar as mudanças no código,
-        garantindo que o trabalho em equipe seja feito de forma eficiente e colaborativa. Adoto boas práticas de programação, o que se traduz em códigos limpos, fáceis de entender e de manter, e trabalho com metodologias ágeis, como Scrum e Kanban, que asseguram a entrega rápida e de qualidade dos projetos. Também utilizo serviços de nuvem,
-        como o <strong>AWS Lambda</strong>, para implantar e gerenciar aplicações de forma prática e segura.</p>
-      <p>Estou sempre em busca de aprimorar minhas habilidades e de aplicar novas tecnologias para desenvolver soluções eficientes, escaláveis e seguras,
-        contribuindo para o sucesso dos projetos e o crescimento da empresa.</p>
+      <div class="about-content">
+        <p>Sou desenvolvedor back-end com foco em <strong>Java</strong> e <strong>Spring Boot</strong> e estudante de
+          <strong>Engenharia de Software</strong>. Gosto de transformar regras de negócio em <strong>APIs RESTful</strong>
+          bem estruturadas, com código limpo e dados bem modelados em bancos relacionais como <strong>PostgreSQL</strong> e <strong>Oracle</strong>.</p>
+        <p>Antes da programação, servi no <strong>Exército Brasileiro</strong> de 2019 a 2025, onde atuei com suporte técnico,
+          diagnóstico e resolução de falhas em hardware e software e boas práticas de segurança da informação. Dessa experiência
+          trago disciplina, trabalho em equipe e calma para resolver problemas sob pressão.</p>
+        <p>No dia a dia, versiono código com <strong>Git e GitHub</strong>, trabalho com <strong>Scrum</strong> e <strong>Kanban</strong>
+          e utilizo mensageria com <strong>Kafka</strong> e serviços em nuvem como o <strong>AWS Lambda</strong>. Também tenho base em
+          <strong>HTML, CSS e JavaScript</strong>, o que facilita a colaboração com o time de front-end.</p>
+        <p>Busco uma oportunidade como <strong>desenvolvedor back-end júnior</strong> para crescer com um time, aprender
+          continuamente e entregar soluções eficientes, seguras e fáceis de manter.</p>
+        <ul class="about-facts" role="list">
+          <li><span>Formação</span><strong>Engenharia de Software</strong><small>UNINTER · 2024 – 2028</small></li>
+          <li><span>Experiência</span><strong>Exército Brasileiro</strong><small>Sargento · suporte técnico · 2019 – 2025</small></li>
+          <li><span>Localização</span><strong>Recife – PE</strong><small>Brasil</small></li>
+        </ul>
+      </div>
     </section>
 
     <!-- Seção Habilidades -->
     <section id="skills" class="skills" data-reveal="up">
       <h2>Habilidades</h2>
-      <ul class="skills-grid" role="list">
-        <li class="skill">HTML5</li>
-        <li class="skill">CSS3</li>
-        <li class="skill">JAVASCRIPT</li>
-        <li class="skill">PYTHON</li>
-        <li class="skill">JAVA</li>
-        <li class="skill">SPRING BOOT</li>
-        <li class="skill">API RESTful</li>
-        <li class="skill">AWS LAMBDA</li>
-        <li class="skill">POSTGRESQL</li>
-        <li class="skill">MYSQL</li>
-        <li class="skill">KAFKA</li>
-        <li class="skill">SCRUM</li>
-        <li class="skill">KANBAN</li>
-        <li class="skill">GIT</li>
-        <li class="skill">GITHUB</li>
-      </ul>
+      <div class="skill-groups">
+        <div class="skill-group">
+          <h3>Linguagens</h3>
+          <ul class="skills-grid" role="list">
+            <li class="skill">Java</li>
+            <li class="skill">Python</li>
+            <li class="skill">JavaScript</li>
+            <li class="skill">HTML5</li>
+            <li class="skill">CSS3</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Back-end e nuvem</h3>
+          <ul class="skills-grid" role="list">
+            <li class="skill">Spring Boot</li>
+            <li class="skill">API RESTful</li>
+            <li class="skill">Kafka</li>
+            <li class="skill">AWS Lambda</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Bancos de dados</h3>
+          <ul class="skills-grid" role="list">
+            <li class="skill">PostgreSQL</li>
+            <li class="skill">MySQL</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Ferramentas e métodos</h3>
+          <ul class="skills-grid" role="list">
+            <li class="skill">Git</li>
+            <li class="skill">GitHub</li>
+            <li class="skill">Scrum</li>
+            <li class="skill">Kanban</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
     <!-- Seção Projetos -->
@@ -130,13 +180,13 @@
           <div class="project-info">
             <h3>Sistema de Pedidos</h3>
             <p>API RESTful para gerenciamento de pedidos usando Spring Boot e PostgreSQL.</p>
-            <div class="tech-icons">
-              <svg class="tech-icon" role="img" aria-label="Java"><title>Java</title><use href="#icon-java"></use></svg>
-              <svg class="tech-icon" role="img" aria-label="Spring Boot"><title>Spring Boot</title><use href="#icon-leaf"></use></svg>
-              <svg class="tech-icon" role="img" aria-label="PostgreSQL"><title>PostgreSQL</title><use href="#icon-database"></use></svg>
-            </div>
+            <ul class="tech-list" role="list">
+              <li class="tech"><svg class="tech-icon" aria-hidden="true"><use href="#icon-java"></use></svg>Java</li>
+              <li class="tech"><svg class="tech-icon" aria-hidden="true"><use href="#icon-leaf"></use></svg>Spring Boot</li>
+              <li class="tech"><svg class="tech-icon" aria-hidden="true"><use href="#icon-database"></use></svg>PostgreSQL</li>
+            </ul>
             <div class="project-links">
-              <a href="https://github.com/cleitonkeliton/oficina-mecanica" target="_blank" rel="noopener">Código</a>
+              <a href="https://github.com/cleitonkeliton/oficina-mecanica" class="btn btn-secondary btn-github" target="_blank" rel="noopener">Ver código<span class="sr-only"> do projeto Sistema de Pedidos</span></a>
             </div>
           </div>
         </article>
@@ -145,12 +195,12 @@
           <div class="project-info">
             <h3>Compra de Carros</h3>
             <p>Simulação de compra de carros e validações baseadas em ano de fabricação. Suporte a carros elétricos.</p>
-            <div class="tech-icons">
-              <svg class="tech-icon" role="img" aria-label="Java"><title>Java</title><use href="#icon-java"></use></svg>
-              <svg class="tech-icon" role="img" aria-label="Orientação a Objetos"><title>Orientação a Objetos</title><use href="#icon-code"></use></svg>
-            </div>
+            <ul class="tech-list" role="list">
+              <li class="tech"><svg class="tech-icon" aria-hidden="true"><use href="#icon-java"></use></svg>Java</li>
+              <li class="tech"><svg class="tech-icon" aria-hidden="true"><use href="#icon-code"></use></svg>Orientação a Objetos</li>
+            </ul>
             <div class="project-links">
-              <a href="https://github.com/cleitonkeliton/compra-de-carro" target="_blank" rel="noopener">Código</a>
+              <a href="https://github.com/cleitonkeliton/compra-de-carro" class="btn btn-secondary btn-github" target="_blank" rel="noopener">Ver código<span class="sr-only"> do projeto Compra de Carros</span></a>
             </div>
           </div>
         </article>
@@ -159,12 +209,12 @@
           <div class="project-info">
             <h3>Análise de Opiniões</h3>
             <p>Classificação de opiniões usando aprendizado de máquina.</p>
-            <div class="tech-icons">
-              <svg class="tech-icon" role="img" aria-label="Python"><title>Python</title><use href="#icon-python"></use></svg>
-              <svg class="tech-icon" role="img" aria-label="Pandas / Scikit-learn"><title>Pandas / Scikit-learn</title><use href="#icon-chart-line"></use></svg>
-            </div>
+            <ul class="tech-list" role="list">
+              <li class="tech"><svg class="tech-icon" aria-hidden="true"><use href="#icon-python"></use></svg>Python</li>
+              <li class="tech"><svg class="tech-icon" aria-hidden="true"><use href="#icon-chart-line"></use></svg>Pandas / Scikit-learn</li>
+            </ul>
             <div class="project-links">
-              <a href="https://github.com/cleitonkeliton/analise-de-opinioes" target="_blank" rel="noopener">Código</a>
+              <a href="https://github.com/cleitonkeliton/analise-de-opinioes" class="btn btn-secondary btn-github" target="_blank" rel="noopener">Ver código<span class="sr-only"> do projeto Análise de Opiniões</span></a>
             </div>
           </div>
         </article>
@@ -175,42 +225,60 @@
     <!-- Seção Currículo -->
     <section id="resume" class="resume" data-reveal="up">
       <h2>Currículo</h2>
-      <p>Clique no botão abaixo para visualizar ou baixar meu currículo.</p>
-      <a href="curriculo-cleiton-keliton.pdf" target="_blank" rel="noopener" class="btn">Exibir Currículo</a>
-      <a href="curriculo-cleiton-keliton.pdf" download="Curriculo-Cleiton-Keliton-da-Silva-Valdevino.pdf" class="btn">Baixar Currículo</a>
+      <p>Formação, experiência profissional e cursos reunidos em um PDF de uma página.</p>
+      <div class="resume-actions">
+        <a href="curriculo-cleiton-keliton.pdf" class="btn btn-primary" target="_blank" rel="noopener">
+          <svg class="icon" aria-hidden="true"><use href="#icon-eye"></use></svg>Exibir currículo
+        </a>
+        <a href="curriculo-cleiton-keliton.pdf" class="btn btn-secondary" download="Curriculo-Cleiton-Keliton-da-Silva-Valdevino.pdf">
+          <svg class="icon" aria-hidden="true"><use href="#icon-download"></use></svg>Baixar PDF
+        </a>
+      </div>
     </section>
 
     <!-- Seção Contato: funciona sem JavaScript (envio direto ao Formspree);
          com JavaScript, o envio é feito em segundo plano pelo script.js -->
     <section id="contact" class="contact" data-reveal="up">
       <h2>Envie uma Mensagem</h2>
+      <p class="section-lead">Tem uma vaga, um projeto ou uma dúvida? Escreva abaixo que eu respondo no e-mail informado.</p>
       <form id="contact-form" action="https://formspree.io/f/movdywgb" method="POST">
-        <label for="name" class="sr-only">Nome</label>
-        <input type="text" id="name" name="name" placeholder="Seu Nome" autocomplete="name" required>
-        <label for="email" class="sr-only">E-mail</label>
-        <input type="email" id="email" name="email" placeholder="Seu E-mail" autocomplete="email" required>
-        <label for="message" class="sr-only">Mensagem</label>
-        <textarea id="message" name="message" placeholder="Sua Mensagem" required></textarea>
+        <div class="form-field">
+          <label for="name">Nome</label>
+          <input type="text" id="name" name="name" placeholder="Seu nome" autocomplete="name" required>
+        </div>
+        <div class="form-field">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" placeholder="voce@exemplo.com" autocomplete="email" required>
+        </div>
+        <div class="form-field">
+          <label for="message">Mensagem</label>
+          <textarea id="message" name="message" placeholder="Conte sobre a vaga, o projeto ou a sua dúvida" required></textarea>
+        </div>
         <!-- armadilha para robôs de spam: o Formspree descarta envios com este campo preenchido -->
         <input type="text" name="_gotcha" class="honeypot" tabindex="-1" autocomplete="off">
-        <button type="submit">Enviar</button>
+        <button type="submit" class="btn btn-primary btn-block">Enviar mensagem</button>
       </form>
     </section>
   </main>
 
   <!-- Rodapé -->
   <footer>
-    <p>
-      <a href="https://github.com/cleitonkeliton" target="_blank" rel="noopener noreferrer">GitHub</a>
-      <span aria-hidden="true">|</span>
-      <a href="https://www.linkedin.com/in/cleiton-keliton-b88b2b315/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <span aria-hidden="true">|</span>
-      <a href="https://api.whatsapp.com/send?phone=5581992938376" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-      <span aria-hidden="true">|</span>
-      <a href="mailto:cleitonkeliton.s@gmail.com?subject=Contato%20via%20Portf%C3%B3lio&amp;body=Ol%C3%A1%2C%20Cleiton!%20Gostaria%20de%20entrar%20em%20contato%20com%20voc%C3%AA.">Gmail</a>
-    </p>
+    <a href="#home" class="footer-brand">
+      <svg class="brand-icon" aria-hidden="true"><use href="#icon-brand"></use></svg>Cleiton Keliton
+    </a>
+    <p class="footer-tagline">Desenvolvedor Back-end Java</p>
+    <ul class="footer-links" role="list">
+      <li><a href="https://github.com/cleitonkeliton" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/cleiton-keliton-b88b2b315/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+      <li><a href="https://api.whatsapp.com/send?phone=5581992938376" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+      <li><a href="mailto:cleitonkeliton.s@gmail.com?subject=Contato%20via%20Portf%C3%B3lio&amp;body=Ol%C3%A1%2C%20Cleiton!%20Gostaria%20de%20entrar%20em%20contato%20com%20voc%C3%AA.">Gmail</a></li>
+    </ul>
     <p><small>Desenvolvido por Cleiton Valdevino | © <span id="ano-atual">2026</span></small></p>
   </footer>
+
+  <a href="#home" class="back-to-top" aria-label="Voltar ao topo">
+    <svg class="icon" aria-hidden="true"><use href="#icon-arrow-up"></use></svg>
+  </a>
 
   <!-- Aviso de envio do formulário (lido por leitores de tela) -->
   <div id="toast" class="alert" role="status" aria-live="polite" aria-atomic="true"></div>

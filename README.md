@@ -21,7 +21,11 @@ Site pessoal com apresentação, habilidades, projetos e currículo.
 - O conteúdo continua visível sem JavaScript, e o formulário também envia sem ele (direto pelo Formspree)
 - O tema é aplicado antes da primeira renderização, sem "piscar" o tema errado
 - Animação de entrada das seções com `IntersectionObserver`, respeitando `prefers-reduced-motion`
+- Menu que destaca a seção visível, cabeçalho translúcido e botão de voltar ao topo
+- Paleta em variáveis CSS: o tema escuro só redefine as cores, num bloco único
 - Prévia de compartilhamento (Open Graph) e favicon
+
+> **Ao publicar mudanças no `style.css` ou no `script.js`**, troque o número em `?v=` nos dois links do `index.html` (ex.: `style.css?v=20261103` → `style.css?v=20261120`). Assim o navegador baixa os arquivos novos em vez de misturar HTML novo com CSS/JS antigos do cache.
 
 ## Estrutura
 

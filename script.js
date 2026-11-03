@@ -9,7 +9,8 @@
 
 const root = document.documentElement;
 const THEME_KEY = 'dark-theme'; // mesma chave das versões anteriores do site
-const THEME_COLOR = { light: '#0066cc', dark: '#1c2833' }; // barra do navegador no celular
+const THEME_COLOR = { light: '#ffffff', dark: '#0b1120' }; // barra do navegador no celular
+const MOBILE_QUERY = '(max-width: 900px)'; // deve bater com o breakpoint do menu no CSS
 
 /* Assina mudanças de uma media query (com alternativa para Safari antigo). */
 function onMediaChange(query, callback) {
@@ -25,8 +26,8 @@ function initReveal() {
   const reveal = (element) => element.classList.add('is-visible');
 
   // Revela sem animação a seção de destino de um link (#projects etc.). Sem isso, o
-  // deslocamento da animação (100 px) entra no cálculo da rolagem e o título da
-  // seção termina escondido atrás do cabeçalho.
+  // deslocamento da animação entra no cálculo da rolagem e o título da seção
+  // termina escondido atrás do cabeçalho.
   const revealNow = (element) => {
     element.classList.add('reveal-instant', 'is-visible');
     void element.offsetHeight; // aplica o estado final antes de o navegador calcular a rolagem
@@ -52,7 +53,7 @@ function initReveal() {
     return;
   }
 
-  // Revela cada seção uma única vez, quando ela entra na tela (100 px de margem).
+  // Revela cada seção uma única vez, quando ela entra na tela.
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -60,7 +61,7 @@ function initReveal() {
         observer.unobserve(entry.target);
       }
     });
-  }, { rootMargin: '0px 0px -100px 0px' });
+  }, { rootMargin: '0px 0px -80px 0px' });
 
   sections.forEach((section) => observer.observe(section));
 }
@@ -78,9 +79,12 @@ function applyTheme(isDark) {
   const theme = isDark ? 'dark' : 'light';
   root.dataset.theme = theme;
   document.querySelector('meta[name="theme-color"]')?.setAttribute('content', THEME_COLOR[theme]);
+  document.getElementById('theme-toggle')?.setAttribute('aria-pressed', String(isDark));
 }
 
 function initTheme() {
+  applyTheme(root.dataset.theme === 'dark'); // sincroniza o botão com o tema aplicado no <head>
+
   document.getElementById('theme-toggle').addEventListener('click', () => {
     const isDark = root.dataset.theme !== 'dark';
     applyTheme(isDark);
@@ -101,13 +105,12 @@ function initTheme() {
 function initMobileMenu() {
   const button = document.getElementById('mobile-menu');
   const menu = document.getElementById('nav-list');
-  const pageContent = [document.querySelector('main'), document.querySelector('footer')];
+  const pageContent = [document.querySelector('main'), document.querySelector('footer'), document.querySelector('.back-to-top')];
   const isOpen = () => menu.classList.contains('active');
 
   function setOpen(open) {
     menu.classList.toggle('active', open);
-    button.setAttribute('aria-expanded', String(open));
-    button.textContent = open ? '✕' : '☰';
+    button.setAttribute('aria-expanded', String(open)); // o CSS troca o ícone ☰/✕
     // Com o menu aberto, o conteúdo por trás dele não recebe foco nem cliques.
     pageContent.forEach((element) => {
       if (element) element.inert = open;
@@ -135,8 +138,52 @@ function initMobileMenu() {
   });
 
   // Ao voltar para a largura de desktop, garante o menu fechado.
-  onMediaChange('(max-width: 768px)', (event) => {
+  onMediaChange(MOBILE_QUERY, (event) => {
     if (!event.matches) setOpen(false);
+  });
+}
+
+/* ---------- Efeitos de rolagem: sombra do cabeçalho e "voltar ao topo" ---------- */
+function initScrollEffects() {
+  const header = document.querySelector('header');
+  const backToTop = document.querySelector('.back-to-top');
+  let scheduled = false;
+
+  const update = () => {
+    const y = window.scrollY;
+    header.classList.toggle('scrolled', y > 8);
+    backToTop.classList.toggle('visible', y > 600);
+    scheduled = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!scheduled) {
+      scheduled = true;
+      requestAnimationFrame(update);
+    }
+  }, { passive: true });
+  update();
+}
+
+/* ---------- Destaque, no menu, da seção que está na tela ---------- */
+function initScrollSpy() {
+  if (!('IntersectionObserver' in window)) return;
+  const links = new Map(
+    [...document.querySelectorAll('#nav-list a[href^="#"]')].map((link) => [link.getAttribute('href').slice(1), link]),
+  );
+
+  // Considera "atual" a seção que cruza a faixa central da tela.
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      links.forEach((link) => link.removeAttribute('aria-current'));
+      links.get(entry.target.id)?.setAttribute('aria-current', 'true');
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+
+  links.forEach((_, id) => {
+    const section = document.getElementById(id);
+    if (section) observer.observe(section);
   });
 }
 
@@ -190,4 +237,6 @@ initReveal();
 initContactForm();
 initTheme();
 initMobileMenu();
+initScrollEffects();
+initScrollSpy();
 updateYear();
